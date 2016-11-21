@@ -1,0 +1,5 @@
+
+outBest = .debug
+maxInstance = 10
+verboseIter = 1
+dropProb = -1
