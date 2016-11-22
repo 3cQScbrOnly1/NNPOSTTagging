@@ -33,6 +33,7 @@ public:
 
     m_instance.allocate(length);
 
+	int pos;
     for (int i = 0; i < length; ++i) {
       vector<string> vecInfo;
       split_bychar(vecLine[i], vecInfo, ' ');
@@ -42,8 +43,10 @@ public:
       for (int j = 1; j < veclength - 1; j++) {
         if (is_startwith(vecInfo[j], "[S]"))
           m_instance.sparsefeatures[i].push_back(vecInfo[j]);
-        if (is_startwith(vecInfo[j], "[C]"))
-          m_instance.charfeatures[i].push_back(vecInfo[j]);
+		if (is_startwith(vecInfo[j], "[C]")) {
+			pos = vecInfo[j].find_first_of("]");
+			m_instance.charfeatures[i].push_back(vecInfo[j].substr(pos + 1));
+		}
       }
     }
 
