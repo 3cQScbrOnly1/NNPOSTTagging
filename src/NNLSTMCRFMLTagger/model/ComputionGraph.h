@@ -14,7 +14,7 @@ public:
 	vector<vector<LookupNode> > _char_inputs;
 	vector<vector<UniNode> > _char_tanh_project;
 	vector<WindowBuilder> _char_windows;
-	vector<GatedPoolNode> _char_gated_pooling;
+	vector<GatedPoolBuilder> _char_gated_pooling;
 
 	vector<ConcatNode> _word_char_concat;
 	WindowBuilder _word_window;
