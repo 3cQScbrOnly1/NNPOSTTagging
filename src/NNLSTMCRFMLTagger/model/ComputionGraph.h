@@ -6,7 +6,7 @@
 struct ComputionGraph : Graph{
 public:
 	const static int max_sentence_length = 256;
-	const static int max_char_length = 16;
+	const static int max_char_length = 32;
 
 public:
 	// node instances
@@ -104,12 +104,12 @@ public:
 	// some nodes may behave different during training and decode, for example, dropout
 	inline void forward(const vector<Feature>& features, bool bTrain = false){
 		clearValue(bTrain); // compute is a must step for train, predict and cost computation
-		int seq_size = features.size();
-		int char_size;
+		int seq_size, char_size;
+		max_sentence_length > features.size() ? seq_size = features.size() : seq_size = max_sentence_length;
 		for (int idx = 0; idx < seq_size; idx++) {
 			const Feature& feature = features[idx];
 			_word_inputs[idx].forward(this, feature.words[0]);
-			int char_size = feature.chars.size();
+			max_char_length > feature.chars.size() ? char_size = feature.chars.size() : char_size = max_char_length;
 			for (int idy = 0; idy < char_size; idy++)
 				_char_inputs[idx][idy].forward(this, feature.chars[idy]);
 			_char_windows[idx].forward(this, getPNodes(_char_inputs[idx], char_size));

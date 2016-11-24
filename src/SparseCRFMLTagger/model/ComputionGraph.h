@@ -43,6 +43,7 @@ public:
 	inline void forward(const vector<Feature>& features, bool bTrain = false){
 		clearValue(bTrain); // compute is a must step for train, predict and cost computation
 		int seq_size = features.size();
+		max_sentence_length > features.size() ? seq_size = features.size() : seq_size = max_sentence_length;
 		for (int idx = 0; idx < seq_size; idx++){
 			const Feature& feature= features[idx];
 			_output[idx].forward(this, feature.linear_features);
