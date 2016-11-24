@@ -210,6 +210,9 @@ void Tagger::train(const string& trainFile, const string& devFile, const string&
 		otherInstNums[idx] = otherExamples[idx].size();
 	}
 
+	m_word_stats[unknownkey] = m_options.wordCutOff + 1;
+	m_char_stats[unknownkey] = m_options.wordCutOff + 1;
+
 	m_driver._model_params._linear_feature.initial(m_feat_stats);
 	m_driver._model_params._word_alpha.initial(m_word_stats);
 	m_driver._model_params._char_alpha.initial(m_char_stats);
