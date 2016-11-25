@@ -43,6 +43,8 @@ public:
 	}
 
 	void exportModelParams(ModelUpdate& ada){
+		words.exportAdaParams(ada);
+		chars.exportAdaParams(ada);
 		_tanhchar_params.exportAdaParams(ada);
 		_gate_pool_param.exportAdaParams(ada);
 		_left_lstm_param.exportAdaParams(ada);

@@ -45,6 +45,9 @@ public:
 	}
 
 	void exportModelParams(ModelUpdate& ada){
+		words.exportAdaParams(ada);
+		chars.exportAdaParams(ada);
+		_sparse_layer.exportAdaParams(ada);
 		_tanhchar_params.exportAdaParams(ada);
 		_gate_pool_param.exportAdaParams(ada);
 		_left_lstm_param.exportAdaParams(ada);
@@ -60,6 +63,7 @@ public:
 		checkgrad.add(&_tanhchar_params.b, "_tanhchar_params.b");
 		checkgrad.add(&_gate_pool_param._uni_gate_param.W, "_gate_pool_param._uni_gate_param.W");
 		checkgrad.add(&_gate_pool_param._uni_gate_param.b, "_gate_pool_param._uni_gate_param.b");
+		checkgrad.add(&words.E, "words.E");
 	}
 
 	void saveModel(){
