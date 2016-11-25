@@ -104,8 +104,8 @@ public:
 			_output[idx].init(hyper_params.labelSize, -1, mem);
 		}
 		_word_window.init(hyper_params.rnnHiddenSize * 2, hyper_params.wordContext, mem);
-		_left_lstm.init(&model_params._left_lstm_param, hyper_params.dropProb, mem);
-		_right_lstm.init(&model_params._left_lstm_param, hyper_params.dropProb, mem);
+		_left_lstm.init(&model_params._left_lstm_param, hyper_params.dropProb, true, mem);
+		_right_lstm.init(&model_params._left_lstm_param, hyper_params.dropProb, false, mem);
 	}
 
 
