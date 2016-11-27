@@ -88,7 +88,7 @@ public:
 				_char_tanh_project[idx][idy].init(hyper_params.charHiddenSize, hyper_params.dropProb, mem);
 			}
 			_char_windows[idx].init(hyper_params.charHiddenSize, hyper_params.charContext, mem);
-			_char_gated_pooling[idx].init(&model_params._gate_pool_param, mem);
+			_char_gated_pooling[idx].init(&model_params._gate_pool_param, hyper_params.dropProb, mem);
 			_word_char_concat[idx].init(hyper_params.wordDim + hyper_params.hiddenSize, -1, mem);
 			_concat_bi_lstm[idx].init(hyper_params.rnnHiddenSize * 2, -1, mem);
 			_output[idx].setParam(&model_params._olayer_linear);
